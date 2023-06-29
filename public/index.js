@@ -45,13 +45,16 @@ form.addEventListener('submit', function(e) {
 socket.on('chat message', function(msg) {
   const item = document.createElement('li');
   item.textContent = msg;
+  if (messages.children.length > 9) {
+    messages.removeChild(messages.firstChild)
+    console.log(messages.children)
+  }
   messages.appendChild(item);
   window.scrollTo(0, document.body.scrollHeight);
 });
 
 // Drawing socket
 socket.on('drawing', onDrawingEvent);
-
 
 // Drawing functions
 function drawLine(x0, y0, x1, y1, color, emit){

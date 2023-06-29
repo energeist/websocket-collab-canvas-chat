@@ -68,7 +68,9 @@ ul {
 .divider {
   flex-direction: column;
   min-width: 500px;
+  max-width: 500px;
   min-height: 500px;
+  max-height: 500px;
   border: 5px solid black;
 }
 
@@ -82,11 +84,11 @@ p {
 .whiteboard {
   width: 500px;
   height: 500px;
-  /* position: absolute;
+  position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  top: 0; */
+  top: 0;
 }
 
 .colors {
