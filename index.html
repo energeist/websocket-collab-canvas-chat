@@ -5,28 +5,36 @@
     <link rel="stylesheet" href="index.css">
   </head>
   <body>
-    <div id="output">
-      <div class="divider" id="whiteboard">
-        <p>Whiteboard</p>
-        <canvas class="whiteboard"></canvas>
+    <div class="container">
+      <div id="output">
+        <div class="divider" id="whiteboard">
+          <p>Whiteboard</p>
+          <canvas class="whiteboard"></canvas>
+        </div>
+        <div class="divider" id="chat">
+          <p>Chat</p>
+          <ul id="messages"></ul>
+        </div>
       </div>
-      <div class="divider" id="chat">
-        <p>Chat</p>
-        <ul id="messages"></ul>
+      <div class="controls">
+        <div class="colors">
+          <div class="color black"></div>
+          <div class="color red"></div>
+          <div class="color green"></div>
+          <div class="color blue"></div>
+          <div class="color yellow"></div>
+          <div class="color white"></div>
+        </div>
+        <form class="username-form">
+          <input id="username-input" placeholder="Username" />
+          <button id="create-user-btn">Set Username</button>
+        </form>
       </div>
+      <form id="form" action="">
+        <input id="input" autocomplete="off" /><button>Send</button>
+      </form>
+      <script src="/socket.io/socket.io.js"></script>
+      <script src="index.js"></script>
     </div>
-    <div class="colors">
-      <div class="color black"></div>
-      <div class="color red"></div>
-      <div class="color green"></div>
-      <div class="color blue"></div>
-      <div class="color yellow"></div>
-      <div class="color white"></div>
-    </div>
-    <form id="form" action="">
-      <input id="input" autocomplete="off" /><button>Send</button>
-    </form>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="index.js"></script>
   </body>
 </html>

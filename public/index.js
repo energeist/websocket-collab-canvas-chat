@@ -44,11 +44,13 @@ form.addEventListener('submit', function(e) {
 // Chat message socket
 socket.on('chat message', function(msg) {
   const item = document.createElement('li');
+  const d = new Date();
+  msg = `name @[${d.toLocaleString()}]: ${msg}`;
   item.textContent = msg;
-  if (messages.children.length > 9) {
-    messages.removeChild(messages.firstChild)
-    console.log(messages.children)
-  }
+  // if (messages.children.length > 9) {
+  //   messages.removeChild(messages.firstChild);
+  //   console.log(messages.children)
+  // }
   messages.appendChild(item);
   window.scrollTo(0, document.body.scrollHeight);
 });
