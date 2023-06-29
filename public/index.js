@@ -59,7 +59,11 @@ function drawLine(x0, y0, x1, y1, color, emit){
   context.moveTo(x0, y0);
   context.lineTo(x1, y1);
   context.strokeStyle = color;
-  context.lineWidth = 2;
+  if (context.strokeStyle == "#ffffff") {
+    context.lineWidth = 20;
+  } else {
+    context.lineWidth = 2;
+  }
   context.stroke();
   context.closePath();
 
