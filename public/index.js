@@ -77,21 +77,18 @@ function drawLine(x0, y0, x1, y1, color, emit){
 }
 
 function onMouseDown(e){
-  console.log("mouse down")
   drawing = true;
   current.x = e.clientX||e.touches[0].clientX;
   current.y = e.clientY||e.touches[0].clientY;
 }
 
 function onMouseUp(e){
-  console.log("mouse up")
   if (!drawing) { return; }
   drawing = false;
   drawLine(current.x, current.y, e.clientX||e.touches[0].clientX, e.clientY||e.touches[0].clientY, current.color, true);
 }
 
 function onMouseMove(e){
-  console.log("mouse move")
   if (!drawing) { return; }
   drawLine(current.x, current.y, e.clientX||e.touches[0].clientX, e.clientY||e.touches[0].clientY, current.color, true);
   current.x = e.clientX||e.touches[0].clientX;
@@ -119,4 +116,10 @@ function onDrawingEvent(data){
   let w = canvas.width;
   let h = canvas.height;
   drawLine(data.x0 * w, data.y0 * h, data.x1 * w, data.y1 * h, data.color);
+}
+
+// make the canvas fill its parent
+function onResize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 }
