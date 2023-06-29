@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Collab Canvas Chat</title>
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <div id="output">
+      <div id="canvas">
+        <canvas class="whiteboard"></canvas>
+      </div>
+      <ul id="messages"></ul>
+    </div>
+    <div class="colors">
+      <div class="color black"></div>
+      <div class="color red"></div>
+      <div class="color green"></div>
+      <div class="color blue"></div>
+      <div class="color yellow"></div>
+    </div>
+    <form id="form" action="">
+      <input id="input" autocomplete="off" /><button>Send</button>
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
