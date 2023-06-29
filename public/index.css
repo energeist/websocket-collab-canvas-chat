@@ -11,12 +11,6 @@ body {
   align-items: flex-start;
 }
 
-#canvas {
-  border: 5px solid black;
-  min-height: 500px;
-  min-width: 500px;
-}
-
 #form {
   background: rgba(0, 0, 0, 0.15);
   padding: 0.25rem;
@@ -86,11 +80,13 @@ p {
 /* canvas styling */
 
 .whiteboard {
-  position: absolute;
+  width: 500px;
+  height: 500px;
+  /* position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  top: 0;
+  top: 0; */
 }
 
 .colors {

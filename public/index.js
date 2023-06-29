@@ -76,24 +76,42 @@ function drawLine(x0, y0, x1, y1, color, emit){
   });
 }
 
-function onMouseDown(e){
+function getMouseCoordinates(e) {
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = canvas.width / rect.width;
+  const scaleY = canvas.height / rect.height;
+  return {
+    x: (e.clientX - rect.left) * scaleX,
+    y: (e.clientY - rect.top) * scaleY
+  };
+}
+
+function onMouseDown(e) {
   drawing = true;
-  current.x = e.clientX||e.touches[0].clientX;
-  current.y = e.clientY||e.touches[0].clientY;
+  const { x, y } = getMouseCoordinates(e);
+  current.x = x;
+  current.y = y;
 }
 
-function onMouseUp(e){
-  if (!drawing) { return; }
+function onMouseUp(e) {
+  if (!drawing) {
+    return;
+  }
   drawing = false;
-  drawLine(current.x, current.y, e.clientX||e.touches[0].clientX, e.clientY||e.touches[0].clientY, current.color, true);
+  const { x, y } = getMouseCoordinates(e);
+  drawLine(current.x, current.y, x, y, current.color, true);
 }
 
-function onMouseMove(e){
-  if (!drawing) { return; }
-  drawLine(current.x, current.y, e.clientX||e.touches[0].clientX, e.clientY||e.touches[0].clientY, current.color, true);
-  current.x = e.clientX||e.touches[0].clientX;
-  current.y = e.clientY||e.touches[0].clientY;
+function onMouseMove(e) {
+  if (!drawing) {
+    return;
+  }
+  const { x, y } = getMouseCoordinates(e);
+  drawLine(current.x, current.y, x, y, current.color, true);
+  current.x = x;
+  current.y = y;
 }
+
 
 function onColorUpdate(e){
   current.color = e.target.className.split(' ')[1];
@@ -120,6 +138,8 @@ function onDrawingEvent(data){
 
 // make the canvas fill its parent
 function onResize() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  canvas.width = 500;
+  canvas.height = 500;
 }
+
+window.addEventListener('resize', onResize);
