@@ -39,8 +39,6 @@ for (let i = 0; i < colors.length; i++){
 let username = "";
 usernameForm.addEventListener('submit', function(e) {
   e.preventDefault();
-  console.log("???")
-  console.log(usernameInput.value)
   if (usernameInput.value) {
     username = usernameInput.value;
   }
