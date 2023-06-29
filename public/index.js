@@ -4,6 +4,8 @@ const socket = io();
 const messages = document.getElementById('messages');
 const form = document.getElementById('form');
 const input = document.getElementById('input');
+const usernameForm = document.getElementById('username-form');
+const usernameInput = document.getElementById('username-input');
 
 // canvas setup
 let canvas = document.getElementsByClassName('whiteboard')[0];
@@ -14,6 +16,7 @@ let context = canvas.getContext('2d');
 let current = {
   color: 'black'
 };
+
 let drawing = false;
 
 // canvas mouse events
@@ -32,25 +35,33 @@ for (let i = 0; i < colors.length; i++){
   colors[i].addEventListener('click', onColorUpdate, false);
 }
 
+// Set username event listeners 
+let username = "";
+usernameForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  console.log("???")
+  console.log(usernameInput.value)
+  if (usernameInput.value) {
+    username = usernameInput.value;
+  }
+  usernameForm.style.display = "none";
+});
+
 // Chat event listeners 
 form.addEventListener('submit', function(e) {
   e.preventDefault();
   if (input.value) {
-    socket.emit('chat message', input.value);
+    socket.emit('chat message', input.value, username);
     input.value = '';
   }
 });
 
 // Chat message socket
-socket.on('chat message', function(msg) {
+socket.on('chat message', function(msg, username) {
   const item = document.createElement('li');
   const d = new Date();
-  msg = `name @[${d.toLocaleString()}]: ${msg}`;
+  msg = `${username} @ [${d.toLocaleString()}]: ${msg}`;
   item.textContent = msg;
-  // if (messages.children.length > 9) {
-  //   messages.removeChild(messages.firstChild);
-  //   console.log(messages.children)
-  // }
   messages.appendChild(item);
   window.scrollTo(0, document.body.scrollHeight);
 });
@@ -120,7 +131,6 @@ function onMouseMove(e) {
   current.x = x;
   current.y = y;
 }
-
 
 function onColorUpdate(e){
   current.color = e.target.className.split(' ')[1];
